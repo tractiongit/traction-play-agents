@@ -1,0 +1,21 @@
+{
+  "name": "traction-play-agents",
+  "owner": {
+    "name": "Traction",
+    "url": "https://github.com/tractiongit"
+  },
+  "metadata": {
+    "description": "Integrações oficiais de agentes para o Traction Play",
+    "version": "0.1.0-preview"
+  },
+  "plugins": [
+    {
+      "name": "traction-play",
+      "source": "./plugins/traction-play",
+      "description": "Skill e conexão MCP remota do Traction Play",
+      "version": "0.1.0-preview",
+      "category": "productivity",
+      "tags": ["traction", "play", "mcp"]
+    }
+  ]
+}
