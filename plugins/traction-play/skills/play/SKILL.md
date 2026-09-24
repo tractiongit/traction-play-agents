@@ -7,6 +7,10 @@ description: Use o MCP autenticado do Traction Play quando a pessoa pedir para c
 
 Use as ferramentas MCP `play` para trabalhar com os dados do Traction Play. A skill ensina o fluxo; o servidor MCP e as permissões do Play determinam o que está realmente disponível.
 
+## Estado beta e primeiro uso
+
+O servidor está publicado; login, identidade e listagem de projetos foram confirmados no Codex. Este plugin ainda não completou o teste OAuth ponta a ponta no Claude Code. Após autenticar, valide somente `whoami` e `list_projects` primeiro. Se qualquer uma falhar, reporte a mensagem exata e pare; não tente endpoints alternativos nem credenciais pessoais. Até a homologação do cliente e das operações ser concluída, não presuma que uma tool publicada está validada em produção.
+
 ## Antes de consultar
 
 1. Confirme a conexão. Se necessário, use `whoami` para verificar a conta autenticada.

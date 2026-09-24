@@ -2,17 +2,17 @@
 
 Pacote público de instruções e configuração para conectar agentes ao Traction Play pelo MCP remoto. Não contém uma cópia do Play, não executa servidor local e não guarda credenciais.
 
-> **Preview:** a instalação do pacote não significa que o serviço já está pronto. A conexão só funcionará quando o endpoint MCP e o OAuth do Play estiverem habilitados e homologados. Não cole tokens neste repositório, no chat ou no terminal.
+> **Beta:** o endpoint MCP e o OAuth do Play estão publicados. O Codex já confirmou login, identidade e listagem de projetos em modo somente leitura. O plugin e seus manifests foram validados, mas o OAuth ainda não foi homologado ponta a ponta dentro do Claude Code; as demais tools e o ciclo de renovação/revogação também estão em validação. Comece somente com leitura e um projeto. Nunca cole tokens neste repositório, no chat ou no terminal.
 
-Instale somente depois do anúncio de liberação pela equipe. Enquanto o MCP/OAuth estiver em preview, a autenticação pode falhar; repetir o login não corrige um endpoint ainda não publicado.
+O pacote é público porque contém apenas instruções e configuração; ele não dá acesso aos projetos. O Play autentica cada pessoa e aplica os projetos e as permissões escolhidos no consentimento.
 
 ## Claude Code
 
 No Claude Code, peça ao agente:
 
-> Instale o conector Traction Play do marketplace `tractiongit/traction-play-agents`. Leia o README, não me peça tokens e pare para eu concluir a autorização OAuth no navegador. Depois valide a conexão com `whoami` e `list_projects`. Se o README disser que o endpoint está em preview ou a autorização falhar, informe o bloqueio sem tentar contornar o fluxo.
+> Instale o conector Traction Play do marketplace `tractiongit/traction-play-agents`. Leia o estado atual no README, não me peça tokens e pare para eu concluir a autorização OAuth no navegador. Depois valide a conexão com `whoami` e `list_projects`, sem alterar dados. Se a autorização ou uma dessas consultas falhar, informe o bloqueio sem tentar contornar o fluxo.
 
-Ou registre e instale o marketplace pelos comandos oficiais no Claude Code:
+Registre e instale o marketplace pelos comandos oficiais no Claude Code:
 
 ```text
 /plugin marketplace add tractiongit/traction-play-agents
@@ -20,7 +20,7 @@ Ou registre e instale o marketplace pelos comandos oficiais no Claude Code:
 /mcp
 ```
 
-Após o anúncio de liberação, abra `/mcp`, escolha Play e conclua o login/consentimento no navegador. Autorize apenas os projetos e capacidades necessários. Depois peça ao agente para verificar a identidade e listar os projetos acessíveis.
+Abra `/mcp`, escolha Play e conclua o login/consentimento no navegador. Autorize apenas os projetos e capacidades necessários. Depois peça ao agente para executar `whoami` e `list_projects` sem alterar dados. Se essas ferramentas não aparecerem ou retornarem erro, pare e reporte o erro; não cole tokens nem tente contornar o OAuth. Mesmo que a leitura funcione, considere escritas em beta até a equipe concluir a homologação completa do Claude Code.
 
 Para remover o plugin, use `/plugin` e desinstale **traction-play**. Para desconectar a autorização, use a opção de desconexão/limpeza de autenticação em `/mcp` e, se necessário, revogue também a conexão em **Play → Minha conta → Aplicações conectadas**.
 
