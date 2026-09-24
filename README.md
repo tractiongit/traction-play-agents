@@ -6,6 +6,14 @@ Pacote público de instruções e configuração para conectar agentes ao Tracti
 
 O pacote é público porque contém apenas instruções e configuração; ele não dá acesso aos projetos. O Play autentica cada pessoa e aplica os projetos e as permissões escolhidos no consentimento.
 
+## Começar em uma linha (qualquer agente)
+
+Copie e cole esta instrução no chat do agente:
+
+> Conecte-me ao Play em `https://play.traction.to/mcp` seguindo `https://github.com/tractiongit/traction-play-agents`; use OAuth nativo no navegador, não peça tokens, comece somente com leitura e valide `whoami`/`list_projects`. Se este agente não suportar essa conexão, explique sem contornar.
+
+Essa é uma instrução para o agente, não um instalador universal: cada produto guarda a configuração MCP em um lugar diferente. Ela funciona quando o agente consegue ler o guia e configurar o próprio cliente; se não, use um exemplo abaixo ou a tela de configurações MCP do produto. Não clone este repositório para executar um servidor local.
+
 ## Claude Code
 
 No Claude Code, peça ao agente:
@@ -27,6 +35,50 @@ Para remover o plugin, use `/plugin` e desinstale **traction-play**. Para descon
 ## Outros agentes
 
 A skill em `plugins/traction-play/skills/play/SKILL.md` usa o formato aberto Agent Skills e pode ser reutilizada por clientes que o implementem. O endpoint é MCP remoto por Streamable HTTP com OAuth; cada cliente precisa oferecer esse transporte e um fluxo OAuth compatível. Os passos de instalação e a configuração variam por produto. Este repositório empacota atualmente o plugin do Claude Code; os demais adaptadores ainda não estão homologados.
+
+Configurações candidatas para clientes que não usam o plugin Claude:
+
+**Codex CLI** — testado no Play para OAuth, identidade e projetos ([documentação](https://developers.openai.com/codex/mcp)):
+
+```bash
+codex mcp add play --url https://play.traction.to/mcp
+codex mcp login play
+```
+
+**Cursor** — adicione a `.cursor/mcp.json` do projeto ([MCP](https://docs.cursor.com/context/model-context-protocol), [CLI](https://docs.cursor.com/en/cli/reference/parameters)):
+
+```json
+{
+  "mcpServers": {
+    "play": { "url": "https://play.traction.to/mcp" }
+  }
+}
+```
+
+**VS Code com Copilot em Agent mode** — adicione a `.vscode/mcp.json` ([configuração](https://code.visualstudio.com/docs/agents/reference/mcp-configuration)):
+
+```json
+{
+  "servers": {
+    "play": { "type": "http", "url": "https://play.traction.to/mcp" }
+  }
+}
+```
+
+**Hermes Agent** — configure no `config.yaml` e inicie o OAuth ([documentação MCP](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)):
+
+```yaml
+mcp_servers:
+  play:
+    url: "https://play.traction.to/mcp"
+    auth: oauth
+```
+
+```bash
+hermes mcp login play
+```
+
+Esses três exemplos são configurações do protocolo, **não homologação do Play nesses clientes**. Em todos, comece com `whoami` e `list_projects`, somente leitura e um projeto. Se OAuth não abrir ou as ferramentas falharem, reporte o erro sem compartilhar tokens nem tentar autenticação alternativa.
 
 ## O que o conector orienta o agente a fazer
 
