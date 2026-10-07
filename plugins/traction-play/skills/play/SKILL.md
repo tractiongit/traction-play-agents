@@ -1,15 +1,19 @@
 ---
 name: play
-description: Use o MCP autenticado do Traction Play quando a pessoa pedir para consultar ou atualizar projetos, tarefas, pulsos semanais ou informações de marca no Play. Não use para desenvolvimento genérico do repositório nem para capacidades que não apareçam nas ferramentas MCP disponíveis.
+description: Conecte ou autentique agentes no Traction Play, diagnostique a conexão e gere o relatório de instalação. Use o MCP autenticado do Traction Play quando a pessoa pedir para consultar ou atualizar projetos, tarefas, pulsos semanais ou informações de marca no Play. Não use para desenvolvimento genérico do repositório nem para capacidades que não apareçam nas ferramentas MCP disponíveis.
 ---
 
 # Traction Play
 
 Use as ferramentas MCP `play` para trabalhar com os dados do Traction Play. A skill ensina o fluxo; o servidor MCP e as permissões do Play determinam o que está realmente disponível.
 
+## Conexão, autenticação e diagnóstico
+
+Quando a pessoa pedir para instalar, conectar, autenticar ou corrigir a conexão, leia [o guia de conexão](references/connection.md) e o caminho do cliente indicado nele. Entregue obrigatoriamente o [relatório sanitizado](references/report.md) em sucesso, falha, cancelamento ou espera por ação manual; atualize na retomada. Isso se aplica à configuração/autenticação, não a cada consulta normal de dados. Um pedido de “veja” ou análise do link não autoriza instalar.
+
 ## Estado beta e primeiro uso
 
-O servidor está publicado; login, identidade e listagem de projetos foram confirmados no Codex. Este plugin ainda não completou o teste OAuth ponta a ponta no Claude Code. Após autenticar, valide somente `whoami` e `list_projects` primeiro. Se qualquer uma falhar, reporte a mensagem exata e pare; não tente endpoints alternativos nem credenciais pessoais. Até a homologação do cliente e das operações ser concluída, não presuma que uma tool publicada está validada em produção.
+O servidor está publicado; login, identidade e listagem de projetos foram confirmados no Codex. Este plugin ainda não completou o teste OAuth ponta a ponta no Claude Code. Após autenticar, valide somente `whoami` e `list_projects` primeiro. Se qualquer uma falhar, reporte a mensagem sanitizada no relatório de conexão e pare; não tente endpoints alternativos nem credenciais pessoais. Até a homologação do cliente e das operações ser concluída, não presuma que uma tool publicada está validada em produção.
 
 ## Antes de consultar
 
