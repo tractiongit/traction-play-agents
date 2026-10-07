@@ -10,15 +10,32 @@ O pacote é público porque contém apenas instruções e configuração; ele n�
 
 Copie e cole esta instrução no chat do agente:
 
-> Conecte-me ao Play em `https://play.traction.to/mcp` seguindo `https://github.com/tractiongit/traction-play-agents`; use OAuth nativo no navegador, não peça tokens, comece somente com leitura e valide `whoami`/`list_projects`. Se este agente não suportar essa conexão, explique sem contornar.
+> Conecte minha conta do Traction Play a este agente seguindo https://github.com/tractiongit/traction-play-agents. Configure o que este ambiente permitir, conduza o login pelo navegador e valide minha identidade e meus projetos. Se alguma etapa precisar ser feita por mim, explique apenas o próximo passo. Não altere dados do Play durante a configuração. Ao concluir ou encontrar um bloqueio, gere o relatório de conexão descrito no repositório.
 
 Essa é uma instrução para o agente, não um instalador universal: cada produto guarda a configuração MCP em um lugar diferente. Ela funciona quando o agente consegue ler o guia e configurar o próprio cliente; se não, use um exemplo abaixo ou a tela de configurações MCP do produto. Não clone este repositório para executar um servidor local.
+
+## Para o agente que recebeu este link
+
+Leia o [guia de conexão](plugins/traction-play/skills/play/references/connection.md), escolha o [caminho do cliente](plugins/traction-play/skills/play/references/clients.md) e entregue o [relatório de conexão](plugins/traction-play/skills/play/references/report.md) tanto em sucesso quanto em bloqueio. Reutilize conexões existentes, conduza apenas a próxima etapa manual e valide `whoami` e `list_projects` antes de dizer que está conectado.
+
+Pedidos como “instala”, “conecta” e “me ajuda a autenticar” seguem esse fluxo. Se a pessoa pedir apenas “veja” ou colar o link sem explicar o que quer, apresente o conector e pergunte se deseja conectar; não inicie instalação automaticamente. O repositório não pode conceder acesso às configurações do cliente nem substituir a autorização do usuário.
+
+## ChatGPT, Codex e Freebuff
+
+- **ChatGPT:** crie uma conexão MCP personalizada com URL `https://play.traction.to/mcp` e OAuth na interface disponível. O link do GitHub é o guia, não o endereço do servidor. [Passos e limitações](plugins/traction-play/skills/play/references/clients.md#chatgpt).
+- **Codex:** reutilize a conexão existente ou configure pelo MCP nativo; [CLI e desktop](plugins/traction-play/skills/play/references/clients.md#codex-cli-ou-desktop).
+- **Freebuff:** confirme interface, versão e suporte a OAuth remoto antes de configurar. Ainda não homologado; [procedimento sem bridges](plugins/traction-play/skills/play/references/clients.md#freebuff).
+- **Gemini CLI:** [configuração candidata](plugins/traction-play/skills/play/references/clients.md#gemini-cli), ainda não homologada no Play.
+
+## Relato para melhorar a conexão
+
+Ao terminar, o agente entrega um relatório copiável com tentativas, retentativas, instalações, buscas adicionais, tempo quando medido, validações e próxima ação. Também entrega um relatório parcial ao aguardar uma ação manual, atualizando-o na retomada. Encaminhe esse relatório à equipe Traction. Não inclua tokens, códigos OAuth, e-mails ou dados dos projetos. Nenhum envio é automático.
 
 ## Claude Code
 
 No Claude Code, peça ao agente:
 
-> Instale o conector Traction Play do marketplace `tractiongit/traction-play-agents`. Leia o estado atual no README, não me peça tokens e pare para eu concluir a autorização OAuth no navegador. Depois valide a conexão com `whoami` e `list_projects`, sem alterar dados. Se a autorização ou uma dessas consultas falhar, informe o bloqueio sem tentar contornar o fluxo.
+> Instale o conector Traction Play do marketplace `tractiongit/traction-play-agents`. Leia o estado atual no README, não me peça tokens e pare para eu concluir a autorização OAuth no navegador. Depois valide a conexão com `whoami` e `list_projects`, sem alterar dados. Siga o guia de conexão deste repositório e entregue o relatório de conexão tanto em sucesso quanto em bloqueio, sem tentar contornar o fluxo.
 
 Registre e instale o marketplace pelos comandos oficiais no Claude Code:
 
